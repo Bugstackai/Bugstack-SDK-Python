@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bugstack"
-version = "1.0.0"
+version = "1.2.0"
 description = "Official BugStack SDK for Python — capture, report, and auto-fix production errors."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
 authors = [
-    { name = "BugStack", email = "team@bugstack.dev" },
+    { name = "BugStack", email = "support@bugstack.ai" },
 ]
 keywords = ["bugstack", "error-tracking", "monitoring", "debugging", "auto-fix"]
 classifiers = [
@@ -48,11 +48,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://bugstack.dev"
-Documentation = "https://docs.bugstack.dev/sdks/python"
-Repository = "https://github.com/MasonBachmann7/bugstack-python"
-Issues = "https://github.com/MasonBachmann7/bugstack-python/issues"
-Changelog = "https://github.com/MasonBachmann7/bugstack-python/blob/main/CHANGELOG.md"
+Homepage = "https://bugstack.ai"
+Documentation = "https://bugstack.ai/docs/sdk/python"
+Repository = "https://github.com/Bugstackai/Bugstack-SDK-Python"
+Issues = "https://github.com/Bugstackai/Bugstack-SDK-Python/issues"
+Changelog = "https://github.com/Bugstackai/Bugstack-SDK-Python/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bugstack"]

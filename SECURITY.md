@@ -4,7 +4,7 @@
 
 If you discover a security vulnerability, please report it responsibly:
 
-**Email:** security@bugstack.dev
+**Email:** security@bugstack.ai
 
 Please do **not** open a public GitHub issue for security vulnerabilities.
 

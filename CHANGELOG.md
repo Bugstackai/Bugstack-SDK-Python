@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-10-28
+
+### Fixed
+
+- The default endpoint is now `https://dashboard.bugstack.ai/api/ingest/sdk`.
+  It was `https://api.bugstack.dev/api/capture`, which is not bugstack's
+  ingest address, so events sent with the default setting did not reach
+  bugstack. Apps that pass `endpoint=` themselves are unaffected.
+- The package's homepage, documentation, repository and contact links now
+  point at bugstack.ai and github.com/Bugstackai/Bugstack-SDK-Python.
+
 ## [1.0.0] - 2026-02-13
 
 ### Added
