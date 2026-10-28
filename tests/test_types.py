@@ -13,7 +13,7 @@ class TestBugStackConfig:
     def test_defaults(self):
         config = BugStackConfig(api_key="bs_test_123")
         assert config.api_key == "bs_test_123"
-        assert config.endpoint == "https://api.bugstack.dev/api/capture"
+        assert config.endpoint == "https://dashboard.bugstack.ai/api/ingest/sdk"
         assert config.environment == "production"
         assert config.auto_fix is False
         assert config.enabled is True

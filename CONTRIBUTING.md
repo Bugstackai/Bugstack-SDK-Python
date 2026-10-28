@@ -5,7 +5,7 @@ Thank you for your interest in contributing!
 ## Development Setup
 
 ```bash
-git clone https://github.com/MasonBachmann7/bugstack-python.git
+git clone https://github.com/Bugstackai/Bugstack-SDK-Python.git
 cd bugstack-python
 python -m venv .venv
 source .venv/bin/activate  # or .venv\Scripts\activate on Windows
@@ -43,4 +43,4 @@ mypy src/bugstack
 
 ## Reporting Issues
 
-Use [GitHub Issues](https://github.com/MasonBachmann7/bugstack-python/issues) to report bugs or request features.
+Use [GitHub Issues](https://github.com/Bugstackai/Bugstack-SDK-Python/issues) to report bugs or request features.

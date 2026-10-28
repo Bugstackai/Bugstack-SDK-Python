@@ -7,7 +7,7 @@ import sys
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional, Union
 
-SDK_VERSION = "1.0.0"
+SDK_VERSION = "1.2.0"
 
 
 @dataclass
@@ -15,7 +15,7 @@ class BugStackConfig:
     """Configuration for the BugStack SDK."""
 
     api_key: str
-    endpoint: str = "https://api.bugstack.dev/api/capture"
+    endpoint: str = "https://dashboard.bugstack.ai/api/ingest/sdk"
     project_id: str = ""
     environment: str = "production"
     auto_fix: bool = False

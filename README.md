@@ -1,6 +1,6 @@
 # bugstack-python
 
-Official Python SDK for [BugStack](https://bugstack.dev) — capture, report, and auto-fix production errors.
+Official Python SDK for [bugstack](https://bugstack.ai) — capture, report, and auto-fix production errors.
 
 [![PyPI](https://img.shields.io/pypi/v/bugstack)](https://pypi.org/project/bugstack/)
 [![Python](https://img.shields.io/pypi/pyversions/bugstack)](https://pypi.org/project/bugstack/)
