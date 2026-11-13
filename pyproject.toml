@@ -5,14 +5,14 @@ build-backend = "hatchling.build"
 [project]
 name = "bugstack"
 version = "1.2.0"
-description = "Official BugStack SDK for Python — capture, report, and auto-fix production errors."
+description = "The bugstack SDK for Python. Reports uncaught server errors from Django, Flask and FastAPI to bugstack, autonomous software maintenance."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
 authors = [
     { name = "BugStack", email = "support@bugstack.ai" },
 ]
-keywords = ["bugstack", "error-tracking", "monitoring", "debugging", "auto-fix"]
+keywords = ["bugstack", "autonomous-software-maintenance", "software-maintenance", "error-reporting", "django", "flask", "fastapi"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
