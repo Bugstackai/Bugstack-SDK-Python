@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "bugstack"
 version = "1.2.0"
-description = "The bugstack SDK for Python. Reports uncaught server errors from Django, Flask and FastAPI to bugstack, autonomous software maintenance."
+description = "The Bugstack SDK for Python. Reports uncaught server errors from Django, Flask and FastAPI to Bugstack, autonomous software maintenance."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"

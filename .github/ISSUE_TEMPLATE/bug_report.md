@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug in the BugStack Python SDK
+about: Report a bug in the Bugstack Python SDK
 title: "[Bug] "
 labels: bug
 ---
