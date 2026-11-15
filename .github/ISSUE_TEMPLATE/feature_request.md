@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest a feature for the BugStack Python SDK
+about: Suggest a feature for the Bugstack Python SDK
 title: "[Feature] "
 labels: enhancement
 ---

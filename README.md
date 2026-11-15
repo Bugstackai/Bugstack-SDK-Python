@@ -1,8 +1,8 @@
 # bugstack-python
 
-The [bugstack](https://bugstack.ai) SDK for Python: Django, Flask and FastAPI.
+The [Bugstack](https://bugstack.ai) SDK for Python: Django, Flask and FastAPI.
 
-bugstack is autonomous software maintenance. It watches your app and your repository, fixes what breaks, and sends every change as a pull request you control. This SDK is how your app tells bugstack about an uncaught server error.
+Bugstack is autonomous software maintenance. It watches your app and your repository, fixes what breaks, and sends every change as a pull request you control. This SDK is how your app tells Bugstack about an uncaught server error.
 
 [![PyPI](https://img.shields.io/pypi/v/bugstack)](https://pypi.org/project/bugstack/)
 [![Python](https://img.shields.io/pypi/pyversions/bugstack)](https://pypi.org/project/bugstack/)
@@ -80,7 +80,7 @@ install_hooks()
 bugstack.init(
     api_key="bs_live_...",          # Required
     environment="production",       # Default: "production"
-    auto_fix=True,                  # Let bugstack open a fix for errors this SDK reports
+    auto_fix=True,                  # Let Bugstack open a fix for errors this SDK reports
     debug=False,                    # Log SDK activity
     dry_run=False,                  # Log without sending
     enabled=True,                   # Kill switch
