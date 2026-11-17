@@ -1,7 +1,9 @@
 """Tests for bugstack.fingerprint module."""
 
-import time
 import threading
+import time
+
+from helpers import make_exception
 
 from bugstack.fingerprint import (
     Deduplicator,
@@ -9,7 +11,6 @@ from bugstack.fingerprint import (
     format_traceback,
     generate_fingerprint,
 )
-from helpers import make_exception
 
 
 class TestGenerateFingerprint:

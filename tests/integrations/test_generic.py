@@ -5,10 +5,9 @@ import threading
 
 import bugstack
 from bugstack.integrations.generic import (
+    _original_excepthook,
     install_hooks,
     uninstall_hooks,
-    _original_excepthook,
-    _original_threading_excepthook,
 )
 
 
@@ -34,7 +33,6 @@ class TestInstallHooks:
             uninstall_hooks()
 
     def test_uninstall_restores_original(self):
-        original_sys = sys.excepthook
         install_hooks()
         uninstall_hooks()
         assert sys.excepthook is _original_excepthook

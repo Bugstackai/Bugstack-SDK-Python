@@ -17,7 +17,7 @@ logger = logging.getLogger("bugstack")
 _httpx = None
 
 
-def _get_httpx():
+def _get_httpx() -> Any:
     global _httpx
     if _httpx is None:
         try:
@@ -157,7 +157,9 @@ class Transport:
 
             except Exception as exc:
                 if self._debug:
-                    logger.warning("[BugStack] Async send failed (attempt %d): %s", attempt + 1, exc)
+                    logger.warning(
+                        "[BugStack] Async send failed (attempt %d): %s", attempt + 1, exc
+                    )
 
             if attempt < self._max_retries - 1:
                 await asyncio.sleep(2 ** attempt)

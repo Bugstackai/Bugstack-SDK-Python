@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from ..types import RequestContext
 
 logger = logging.getLogger("bugstack")
 
@@ -60,7 +63,6 @@ class BugStackMiddleware:
         """Called by Django when a view raises an exception."""
         try:
             import bugstack
-            from ..types import RequestContext
 
             client = bugstack.get_client()
             if client is None:
@@ -76,7 +78,7 @@ class BugStackMiddleware:
             logger.warning("[BugStack] Error capturing exception: %s", exc)
 
     @staticmethod
-    def _build_request_context(request: Any) -> "RequestContext":
+    def _build_request_context(request: Any) -> RequestContext:
         from ..types import RequestContext
 
         route = ""

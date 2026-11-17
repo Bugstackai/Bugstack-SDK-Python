@@ -8,8 +8,13 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest moved to 26.04, which has no Python 3.9, and the
+    # package still supports 3.9 (requires-python >= 3.9).
+    runs-on: ubuntu-24.04
     strategy:
+      # One version failing does not cancel the others, so a run shows every
+      # version that is broken.
+      fail-fast: false
       matrix:
         python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
 
