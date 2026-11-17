@@ -1,6 +1,7 @@
 """Shared test fixtures for BugStack SDK tests."""
 
 import pytest
+
 import bugstack
 from bugstack.client import BugStackClient
 from bugstack.types import BugStackConfig

@@ -36,7 +36,7 @@ class FastAPIMiddleware:
         except Exception:
             return ""
 
-    async def __call__(self, scope: dict, receive: Any, send: Any) -> None:
+    async def __call__(self, scope: dict[str, Any], receive: Any, send: Any) -> None:
         if scope["type"] != "http":
             await self.app(scope, receive, send)
             return
@@ -50,13 +50,6 @@ class FastAPIMiddleware:
             if client:
                 request_ctx = self._build_request_context(scope)
 
-                # Set framework info
-                from ..types import EnvironmentInfo
-                env = EnvironmentInfo(
-                    framework="fastapi",
-                    framework_version=self._framework_version,
-                )
-
                 client.capture_exception(
                     exc,
                     request=request_ctx,
@@ -66,7 +59,7 @@ class FastAPIMiddleware:
             raise
 
     @staticmethod
-    def _build_request_context(scope: dict) -> RequestContext:
+    def _build_request_context(scope: dict[str, Any]) -> RequestContext:
         """Extract request context from ASGI scope."""
         path = scope.get("path", "")
         method = scope.get("method", "")

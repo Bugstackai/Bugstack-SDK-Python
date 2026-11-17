@@ -2,9 +2,10 @@
 
 import warnings
 
+from helpers import make_exception
+
 import bugstack
 from bugstack.types import SDK_VERSION, RequestContext
-from helpers import make_exception
 
 
 class TestInit:

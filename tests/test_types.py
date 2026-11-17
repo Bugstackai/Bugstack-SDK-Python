@@ -1,11 +1,11 @@
 """Tests for bugstack.types module."""
 
 from bugstack.types import (
+    SDK_VERSION,
     BugStackConfig,
     EnvironmentInfo,
     ErrorEvent,
     RequestContext,
-    SDK_VERSION,
 )
 
 

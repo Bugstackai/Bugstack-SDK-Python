@@ -5,9 +5,11 @@ import pytest
 django = pytest.importorskip("django")
 
 import os
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "tests.integrations.django_settings")
 
 import django as dj
+
 dj.setup()
 
 import bugstack
@@ -18,7 +20,7 @@ class TestDjangoMiddleware:
     def test_init_ensures_initialized(self):
         """Middleware should auto-initialize from Django settings."""
         bugstack._client = None  # Reset
-        middleware = BugStackMiddleware(get_response=lambda r: r)
+        BugStackMiddleware(get_response=lambda r: r)
         # Should have auto-initialized from django_settings
         client = bugstack.get_client()
         assert client is not None

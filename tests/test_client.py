@@ -1,10 +1,10 @@
 """Tests for bugstack.client module."""
 
-import pytest
+
+from helpers import make_exception
 
 from bugstack.client import BugStackClient
 from bugstack.types import BugStackConfig, ErrorEvent, RequestContext
-from helpers import make_exception
 
 
 class TestBugStackClient:

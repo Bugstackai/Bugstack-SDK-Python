@@ -16,10 +16,10 @@ Usage:
 from __future__ import annotations
 
 import atexit
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 from .client import BugStackClient
-from .types import BugStackConfig, ErrorEvent, RequestContext, SDK_VERSION
+from .types import SDK_VERSION, BugStackConfig, ErrorEvent, RequestContext
 
 __version__ = SDK_VERSION
 __all__ = [
@@ -47,7 +47,7 @@ def init(
     deduplication_window: float = 300.0,
     timeout: float = 5.0,
     max_retries: int = 3,
-    ignored_errors: Optional[list] = None,
+    ignored_errors: Optional[list[Union[str, type]]] = None,
     before_send: Optional[Any] = None,
     redact_fields: Optional[list[str]] = None,
 ) -> BugStackClient:

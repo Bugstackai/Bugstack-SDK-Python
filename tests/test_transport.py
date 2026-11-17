@@ -1,6 +1,5 @@
 """Tests for bugstack.transport module."""
 
-import json
 import time
 
 import httpx
@@ -120,7 +119,9 @@ class TestTransportAsync:
                 max_retries=1,
             )
 
-            result = await transport.send_async({"apiKey": "key", "error": {"message": "async test"}})
+            result = await transport.send_async(
+                {"apiKey": "key", "error": {"message": "async test"}}
+            )
             transport.shutdown()
 
             assert result is True

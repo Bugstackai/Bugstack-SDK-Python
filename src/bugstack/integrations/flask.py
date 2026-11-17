@@ -24,17 +24,22 @@ def init_app(app: Any) -> None:
     Flask's own error handling still works.
     """
 
-    @app.errorhandler(Exception)
     def _bugstack_error_handler(exc: Exception) -> Any:
         try:
-            import bugstack
             from flask import request as flask_request
+
+            import bugstack
+
             from ..types import RequestContext
 
             client = bugstack.get_client()
             if client:
                 request_ctx = RequestContext(
-                    route=flask_request.url_rule.rule if flask_request.url_rule else flask_request.path,
+                    route=(
+                        flask_request.url_rule.rule
+                        if flask_request.url_rule
+                        else flask_request.path
+                    ),
                     method=flask_request.method,
                 )
                 client.capture_exception(
@@ -47,6 +52,8 @@ def init_app(app: Any) -> None:
 
         # Re-raise so Flask handles it normally
         raise exc
+
+    app.register_error_handler(Exception, _bugstack_error_handler)
 
     # Also try to detect Flask version for environment info
     try:

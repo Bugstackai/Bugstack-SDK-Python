@@ -3,10 +3,8 @@
 from __future__ import annotations
 
 import logging
-import sys
-import re
 from datetime import datetime, timezone
-from typing import Any, Optional, Union
+from typing import Any, Optional
 
 from .fingerprint import (
     Deduplicator,
@@ -15,7 +13,7 @@ from .fingerprint import (
     generate_fingerprint,
 )
 from .transport import Transport
-from .types import BugStackConfig, ErrorEvent, EnvironmentInfo, RequestContext
+from .types import BugStackConfig, EnvironmentInfo, ErrorEvent, RequestContext
 
 logger = logging.getLogger("bugstack")
 
