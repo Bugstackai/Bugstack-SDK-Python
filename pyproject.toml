@@ -59,6 +59,9 @@ packages = ["src/bugstack"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# The Django test names its settings module as tests.integrations.django_settings,
+# so the repository root must be importable when pytest is run as `pytest`.
+pythonpath = ["."]
 asyncio_mode = "auto"
 
 [tool.ruff]
