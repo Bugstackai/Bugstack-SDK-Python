@@ -7,7 +7,7 @@ import sys
 from dataclasses import dataclass, field
 from typing import Any, Callable, Optional, Union
 
-SDK_VERSION = "1.2.0"
+SDK_VERSION = "1.3.0"
 
 
 @dataclass
@@ -28,6 +28,10 @@ class BugStackConfig:
     ignored_errors: list[Union[str, type]] = field(default_factory=list)
     before_send: Optional[Callable[["ErrorEvent"], Optional["ErrorEvent"]]] = None
     redact_fields: list[str] = field(default_factory=list)
+    # Forward logged errors (logger.exception, logger.error("...", exc)).
+    capture_logging: bool = True
+    # Also forward ERROR records that carry no exception, as their message.
+    capture_log_messages: bool = False
 
 
 @dataclass

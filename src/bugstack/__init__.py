@@ -50,6 +50,8 @@ def init(
     ignored_errors: Optional[list[Union[str, type]]] = None,
     before_send: Optional[Any] = None,
     redact_fields: Optional[list[str]] = None,
+    capture_logging: bool = True,
+    capture_log_messages: bool = False,
 ) -> BugStackClient:
     """Initialize the BugStack SDK.
 
@@ -70,6 +72,11 @@ def init(
         ignored_errors: Error types or messages to ignore.
         before_send: Hook to inspect/modify/drop events.
         redact_fields: Additional field names to redact.
+        capture_logging: Forward caught-and-logged errors: an ERROR record
+            that carries an exception (logger.exception, exc_info=True, or
+            logger.error("... %s", exc)). On by default.
+        capture_log_messages: Also forward ERROR records that carry no
+            exception, as their message. Off by default.
 
     Returns:
         The initialized BugStackClient.
@@ -94,6 +101,8 @@ def init(
         ignored_errors=ignored_errors or [],
         before_send=before_send,
         redact_fields=redact_fields or [],
+        capture_logging=capture_logging,
+        capture_log_messages=capture_log_messages,
     )
 
     _client = BugStackClient(config)

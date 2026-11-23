@@ -74,6 +74,28 @@ bugstack.init(api_key="bs_live_...")
 install_hooks()
 ```
 
+### Caught-and-logged errors (`logging`)
+
+Most failures never reach `sys.excepthook`. An `except` block logs them and the app carries on:
+
+```python
+try:
+    grant_credits(order)
+except KeyError:
+    logger.exception("[billing] grant failed")   # a log line nobody reads
+```
+
+Once `bugstack.init()` has run, these reach Bugstack too. It is on by default and needs no handler: every log record still goes to your handlers exactly as before, and `logging.basicConfig()` still works after `init()`.
+
+- **Forwarded:** an ERROR (or higher) record that carries an exception, as `exc_info` (`logger.exception(...)`, `exc_info=True`) or as a `%` argument (`logger.error("row failed: %s", exc)`). The report is anchored at the logging call, so each logging site is its own issue.
+- **Left as a log line:** ERROR records with no exception (set `capture_log_messages=True` to forward them as their message), the SDK's own `bugstack` logger, and an exception `capture_exception` already sent.
+- **Bounded:** at most 20 a minute per process, the same site and message at most once per 5 minutes, then the usual fingerprint dedup. The logged text goes through `redact_fields`, and bearer tokens are masked. Forwarding never raises.
+
+```python
+bugstack.init(api_key="bs_live_...", capture_logging=False)        # turn it off
+bugstack.init(api_key="bs_live_...", capture_log_messages=True)    # also forward message-only ERROR records
+```
+
 ## Configuration
 
 ```python
@@ -93,6 +115,8 @@ bugstack.init(
     ],
     before_send=my_hook,            # Inspect/modify/drop events
     redact_fields=["password"],     # Fields to redact
+    capture_logging=True,           # Forward caught-and-logged errors (default: on)
+    capture_log_messages=False,     # Also forward ERROR records without an exception
 )
 ```
 

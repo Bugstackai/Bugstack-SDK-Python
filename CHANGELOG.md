@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2026-11-23
+
+### Added
+
+- Caught-and-logged errors reach Bugstack. An `except` block that calls
+  `logger.exception(...)` or `logger.error("... %s", exc)` and carries on
+  was invisible: only `sys.excepthook`, the framework middleware and
+  `capture_exception` reported anything. Once `bugstack.init()` has run, an
+  ERROR record carrying an exception is reported, anchored at the logging
+  call. On by default; `capture_logging=False` turns it off and
+  `capture_log_messages=True` also forwards ERROR records without an
+  exception. Log output is unchanged (the SDK wraps
+  `logging.Logger.callHandlers` and adds no handler, so
+  `logging.basicConfig()` still works after `init()`). Capped at 20 a minute
+  and once per site and message per 5 minutes, redacted with
+  `redact_fields`, never raises.
+
 ## [1.2.0] - 2026-10-28
 
 ### Fixed
