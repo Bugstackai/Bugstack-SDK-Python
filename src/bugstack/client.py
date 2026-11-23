@@ -12,6 +12,7 @@ from .fingerprint import (
     format_traceback,
     generate_fingerprint,
 )
+from .integrations import logging_capture
 from .transport import Transport
 from .types import BugStackConfig, EnvironmentInfo, ErrorEvent, RequestContext
 
@@ -37,6 +38,11 @@ class BugStackClient:
                 max_retries=config.max_retries,
                 debug=config.debug,
             )
+
+        # Caught-and-logged errors report through this client
+        # (integrations/logging_capture.py).
+        if config.enabled and config.capture_logging:
+            logging_capture.install(self, capture_messages=config.capture_log_messages)
 
         if config.debug:
             logging.basicConfig(level=logging.DEBUG)
@@ -77,6 +83,9 @@ class BugStackClient:
         if not self._config.enabled:
             return False
 
+        # A log record for this same exception is not sent again.
+        logging_capture.mark_reported(exc)
+
         # Check ignored_errors
         if self._is_ignored(exc):
             if self._config.debug:
@@ -100,7 +109,26 @@ class BugStackClient:
             timestamp=datetime.now(timezone.utc).isoformat(),
             metadata=metadata or {},
         )
+        return self._send(event)
 
+    def send_event(self, event: ErrorEvent, exc: Optional[BaseException] = None) -> bool:
+        """Send a pre-built event (used by the logging integration).
+
+        Applies ``ignored_errors`` (when ``exc`` is given), ``before_send``,
+        deduplication and the transport, like ``capture_exception``. Never raises.
+        """
+        try:
+            if not self._config.enabled:
+                return False
+            if exc is not None and self._is_ignored(exc):
+                return False
+            return self._send(event)
+        except Exception as inner:
+            if self._config.debug:
+                logger.error("[BugStack] Error during capture: %s", inner)
+            return False
+
+    def _send(self, event: ErrorEvent) -> bool:
         # before_send hook
         if self._config.before_send:
             result = self._config.before_send(event)
@@ -145,5 +173,6 @@ class BugStackClient:
 
     def shutdown(self) -> None:
         """Shut down the client and flush pending events."""
+        logging_capture.uninstall(self)
         if self._transport:
             self._transport.shutdown()
